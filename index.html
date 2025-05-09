@@ -1,15 +1,15 @@
 <h1>Random Coding and Testing Observations</h1>
 
 <h2>Connecting With External Firefox Instance from Robot Framework</h2>
-<p>This worked at least in May 2025 ... Additional arguments when starting Firefox: <pre>--marionette --remote-allow-hosts localhost</pre></p>
+<p>This worked at least in May 2025 ... Additional arguments when starting Firefox: <code>--marionette --remote-allow-hosts localhost</code></p>
 <p>Robot keyword to establish a connection with Firefox:</p>
-<code>
+<pre>
 *** Keywords ***
 Connect With Existing Firefox
     ${service} =    Evaluate    selenium.webdriver.FirefoxService(log_output='geckodriver.log', service_args=['--connect-existing','--marionette-port','2828','--log','debug'])
     ${webdriver} =    Create Webdriver    Firefox    service=${service}
     RETURN    ${webdriver}  
-</code>
+</pre>
 <p>This roughly corresponds to calling <strong>Open Browser</strong> keyword from SeleniumLibrary
   and the browser can be used from Robot Tests. However, I could not get <strong>Close Browser</strong>
   keyword to work. This can be solved using some native library like AutoIT for closing the browser window.</p>
